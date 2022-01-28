@@ -18,3 +18,116 @@
 # 	on_fail = {
 # 	}
 # }
+
+
+# 戦闘データの取得
+# 「戦闘訓練の果てに」
+# 当該スペシャルプロジェクトに地上軍を1つ以上必要。3か月
+special_project = {
+	key = "NGM_OBTAINING_COMBAT_DATA"
+	cost = 0
+	days_to_research = 90
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_archaeological_dig
+	icon = "gfx/interface/icons/situation_log/situation_log_precursor.dds"
+
+	event_scope = ship_event
+
+	requirements = {
+		assault_armies = 1 # 一般的なアーミートリガーが必要 - どのようなアーミーでも使えるはず
+	}
+
+	on_success = {
+		ship_event = { id = ngm_anomaly.100 }
+	}
+
+	on_fail = {
+	}
+}
+
+# 「軍部に探りを入れる」
+# 社会学10000
+special_project = {
+	key = "NGM_PROBE_MILITARY"
+	cost = 10000
+	# days_to_research = 300
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_archaeological_dig
+	icon = "gfx/interface/icons/situation_log/situation_log_precursor.dds"
+
+	event_scope = ship_event
+
+	on_success = {
+		ship_event = { id = ngm_anomaly.101 }
+	}
+
+	on_fail = {
+	}
+}
+
+# キーを解読する（物理学10000必要）
+special_project = {
+	key = "NGM_UNCOVERED_ROOM1"
+	cost = 10000
+	# days_to_research = 300
+	timelimit = -1
+	tech_department = physics_technology
+	picture = GFX_evt_archaeological_dig
+	icon = "gfx/interface/icons/situation_log/situation_log_precursor.dds"
+
+	event_scope = ship_event
+
+	on_success = {
+		ship_event = { id = ngm_anomaly.102 }
+	}
+
+	on_fail = {
+	}
+}
+
+# 爆破を行う（工学。1000必要）
+special_project = {
+	key = "NGM_UNCOVERED_ROOM2"
+	cost = 10000
+	# days_to_research = 300
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_archaeological_dig
+	icon = "gfx/interface/icons/situation_log/situation_log_precursor.dds"
+
+	event_scope = ship_event
+
+	on_success = {
+		ship_event = { id = ngm_anomaly.103 }
+	}
+
+	on_fail = {
+	}
+}
+
+# （スペシャルプロジェクト「突入 結果」 調査船1隻。3か月）
+special_project = {
+	key = "NGM_ENTRY_RESULT"
+	cost = 10000
+	days_to_research = 90
+	timelimit = -1
+	tech_department = society_technology
+	picture = GFX_evt_archaeological_dig
+	icon = "gfx/interface/icons/situation_log/situation_log_precursor.dds"
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+	}
+
+	on_success = {
+		ship_event = { id = ngm_anomaly.104 }
+	}
+
+	on_fail = {
+	}
+}

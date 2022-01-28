@@ -1,0 +1,210 @@
+#an_anomaly_category = {				# Anomaly category ID key
+#
+#	should_ai_use = yes/no			# AI帝国がカテゴリを生成することを許可する。デフォルト：なし
+#	should_ai_and_humans_use = yes/no # yes の場合、AI と人間の両方の帝国がこの異常を使用できる (should_ai_use をオーバーライドする)
+#
+#	desc = "key"					# 任意、descが指定されない場合は"<カテゴリーキー>_desc "とみなされる
+#
+#	desc = {						# トリガーディスクも使用可能です。最初に有効なエントリーが使用されます。
+#		trigger = { ... }			# Scope: planet, from = ship
+#		text = "key"				# Localization key for description
+#	}
+#	picture = GFX_picture			# Picture displayed in category window
+#	level = int						# Anomaly level, 1 to 10
+#
+#	null_spawn_chance = 0.5			# 0.0 - 1.0 (0〜100%) カテゴリが出現しない確率
+#									# アノマリーダイスで選ばれても。を作るために使用します。
+#									# ブラックホールなどの珍しい天体のカテゴリは、実際にはまれです。
+#
+#	max_once = yes/no				# デフォルトはNO、Trueの場合、帝国ごとに一度だけカテゴリを生成します。
+#	max_once_global = yes/no		# デフォルトはNO、Trueの場合は1ゲームに1回だけカテゴリを生成します。
+#
+#	spawn_chance = {				# このアノマリーカテゴリーがスポーンする確率。
+#		base = <num>				# 他の有効なカテゴリとの相対的な関係。デフォルト：base = 0
+#		modifier = {				# スポーンチャンスモディファイア
+#			add/factor = <num>
+#			<triggers>				# Scope: planet, from = ship
+#		}
+#	}
+#
+#	on_spawn = { <effects> }		# アノマリーカテゴリが生成されたときに直ちに実行されます。
+#									# Scopes are this/root: planet, from: ship
+#									# NOTE: カテゴリがコンソールから生成された場合、on_spawn のエフェクトは実行されません。
+#
+#	on_success = {					# random_list と同様に、発生させる異常イベントを選択します。
+#		1 = {						# Base chance
+#			max_once = yes			# Individual outcomes default to max_once = yes,
+#			max_once_global = no	 # and max_once_global = no
+#			modifier = {			# Optional modifiers
+#				add/factor = <num>
+#				<triggers>			# Scope: ship, from: planet
+#			}
+#			anomaly_event = <id>	# 新規エフェクト anomaly_event は指定されたイベント ID を発火させます。 Scope: ship, from: planet
+#		}							# ship_event も使えますが、取得するものが異なります。 scopes:
+#									# ship, from: ship, fromfrom: planet
+#
+#		1 = <event id>				# shorthand for 1 = { anomaly_event = <event id> }
+#	}
+#
+#	on_success = <event id>			# Shorthand for on_success = { 1 = { anomaly_event = <event id> } }
+#}									# Only use if there is only one outcome in the category
+
+# 1.欠落した生態系 missing_ecosystem Ⅳ
+# ①アノマリー表記等（不毛な惑星等のみ）
+# この星には大規模な生態系の跡が残っているが、不自然な生態系が存在しており、生命の終焉への道をたどっている。
+ngm_missing_ecosystem_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 4
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.1
+}
+
+# 2.娯楽の影 shadow_of_entertainment	Ⅳ
+# ①アノマリー表記等（不毛な惑星等のみ）
+# この星からは大量の遺物が発見されているが、その量に似合わず、遺跡の類は発見されていない。
+ngm_shadow_of_entertainment_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 4
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.2
+}
+
+# 3.軍靴の音  resounding_of_military_boots	Ⅴ
+# ①アノマリー表記等(死の惑星)
+# この惑星には起動爆撃の跡が残っており、多数の遺跡や遺物
+ngm_resounding_of_military_boots_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 5
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			is_planet_class = pc_nuked
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.3
+}
+
+# 4.〇戦闘データの取得 obtaining_combat_data Ⅳ
+# ①アノマリー表記等（不毛な惑星等のみ）
+# この惑星の表面には戦闘訓練場跡が存在する。
+ngm_obtaining_combat_data_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 4
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.4
+}
+
+# 5.〇開かずの部屋 uncovered_room Ⅱ
+# ①アノマリー表記等（居住可能惑星のみ）
+# この惑星には謎の部屋が存在することがわかっている。中身を確認する方法はないだろうか。
+ngm_uncovered_room_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 2
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			OR = {
+				is_wet = yes
+				is_dry = yes
+				is_cold = yes
+			}
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.5
+}
+
+# 6.〇幸運を。過去の者より敬礼を Ⅴ
+# ①アノマリー表記等（不毛な惑星等のみ）
+# この惑星には謎の施設が存在する。
+ngm_good_luck_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 5
+
+	spawn_chance = {
+		modifier = {
+			add = 3
+			uninhabitable_regular_planet = yes
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.6
+}
+
+# 7.無料の昼飯などない Ⅲ
+# ①アノマリー表記等（居住可能惑星のみ）
+# この惑星には大きな石碑が存在している。
+ngm_no_free_lunch_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 3
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			OR = {
+				is_wet = yes
+				is_dry = yes
+				is_cold = yes
+			}
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.7
+}
+
+# 8.たったひとつの冴えたやりかた Ⅳ
+# ①アノマリー表記等（恒星にのみ）
+# この恒星の周りには何やらメッセージのようなものが複数確認されている。
+ngm_only_one_way_category = {
+	# picture = GFX_evt_atmospheric_flight
+	level = 4
+
+	spawn_chance = {
+		modifier = {
+			add = 1
+			is_planet_class = star
+		}
+	}
+
+	max_once_global = yes
+
+	on_success = ngm_anomaly.8
+}

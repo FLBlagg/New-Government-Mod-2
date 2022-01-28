@@ -185,6 +185,35 @@ ngm_seaweed = {
 	planets_consumer_goods_produces_add = 5
 }
 
+# なんということだ（社会学+1000、2年間社会学+5%）（追加で10年間帝国補正「環境主義の主張」を獲得）
+ngm_missing_ecosystem = {
+	country_society_research_produces_mult = 0.05
+}
+
+# ※環境主義の主張（環境主義魅力+10%、テラフォーミングコスト+5%）
+ngm_environmentalism_claims = {
+	pop_ethic_conservationism_attraction_mult = 0.1
+	terraforming_cost_mult = 0.05
+}
+
+# さあ、仕事の時間だ（2年間Pop生産力+5%）
+ngm_no_free_foods = {
+	planets_produces_mult = 0.05
+}
+
+# 冴えたやり方か......（2年間統合力+10%）
+ngm_only_one_way = {
+	country_unity_produces_mult = 0.1
+}
+
+# 「軍部に探りを入れる」（10年間外交発言力+10%、社会学研究+10%、安定度-15）
+ngm_probe_military = {
+	diplo_weight_mult = 0.1
+	country_society_research_produces_mult = 0.1
+	planet_stability_add = -15
+}
+
+
 # 繁栄主義者		平和の期間が5年続くごとに労働者生産量+1%、交易価値+2.5%（最大50年分）
 civic_ngm_prosperity_1_advocate_modifier = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_planet_from_space.dds"

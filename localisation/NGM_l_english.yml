@@ -2139,6 +2139,18 @@
 
  ngm_r_galactic_empire_aquarium:0 "銀河皇帝勅許第7216号「帝立遊園領邦の認可」"
 
+ ngm_missing_ecosystem:0 "欠落した生態系"
+ ngm_missing_ecosystem_desc:0 ""
+
+ ngm_environmentalism_claims:0 "環境主義の主張"
+ ngm_environmentalism_claims_desc:0 ""
+
+ ngm_no_free_foods:0 "無料の昼飯などない"
+ ngm_no_free_foods_desc:0 ""
+
+ ngm_only_one_way:0 "たったひとつの冴えたやりかた"
+ ngm_only_one_way_desc:0 ""
+
 ##########################
 #####    種族特性    ######
 ##########################
