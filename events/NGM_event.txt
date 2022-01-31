@@ -2987,21 +2987,21 @@ country_event = {
 							effect = {
 								set_owner = event_target:pursuer_enemy
 								while = {
-									count = 50000
+									count = 250
 									create_ship = {
 										design = "NAME_PURSUER_SMALL_F"
 										name = "Pursuer"
 									}
 								}
 								while = {
-									count = 10000
+									count = 100
 									create_ship = {
 										design = "NAME_PURSUER_MEDIUM_F"
 										name = "Pursuer"
 									}
 								}
 								while = {
-									count = 2500
+									count = 50
 									create_ship = {
 										design = "NAME_PURSUER_LARGE_E"
 										name = "Pursuer"
@@ -4266,6 +4266,26 @@ ship_event = {
 				modifier = ngm_probe_military
 				days = 3600
 			}
+		}
+	}
+}
+
+# 考古学地点
+fleet_event = {
+	id = ngm_anomaly.1001
+	title = "ngm_anomaly.1001.name"
+	desc = ngm_anomaly.1001.desc
+	picture = GFX_evt_relic_world_street
+	show_sound = event_wind_ruins
+	location = from
+
+	archaeology = yes
+
+	is_triggered_only = yes
+
+	option = {
+		name = OK
+		owner = {
 		}
 	}
 }
