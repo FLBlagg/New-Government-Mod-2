@@ -8,6 +8,7 @@
 # 6.首長優位制(支配層の幸福度)
 # 7.議会優位制(市民の幸福度)
 # 8.宗教支配制(統合力+)
+
 # 表示非表示
 decision_ngm_do = {
 	owned_planets_only = yes

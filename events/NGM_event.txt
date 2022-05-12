@@ -2987,21 +2987,21 @@ country_event = {
 							effect = {
 								set_owner = event_target:pursuer_enemy
 								while = {
-									count = 250
+									count = 50000
 									create_ship = {
 										design = "NAME_PURSUER_SMALL_F"
 										name = "Pursuer"
 									}
 								}
 								while = {
-									count = 100
+									count = 10000
 									create_ship = {
 										design = "NAME_PURSUER_MEDIUM_F"
 										name = "Pursuer"
 									}
 								}
 								while = {
-									count = 50
+									count = 2500
 									create_ship = {
 										design = "NAME_PURSUER_LARGE_E"
 										name = "Pursuer"
@@ -3717,9 +3717,8 @@ country_event = {
 					min_distance >= 500
 				}
 			}
-			event_target:ngm_galactic_empire_aquarium4 = {
-				# done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
-				spawn_natural_wormhole = {
+			event_target:ngm_galactic_empire_aquarium4 = { # done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
+					spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
@@ -3744,9 +3743,8 @@ country_event = {
 					min_distance >= 500
 				}
 			}
-			event_target:ngm_galactic_empire_aquarium5 = {
-				# done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
-				spawn_natural_wormhole = {
+			event_target:ngm_galactic_empire_aquarium5 = { # done this way to ensure we don't spawn "orphan" wormholes (wormholes that aren't linked to anything)
+					spawn_natural_wormhole = {
 					bypass_type = wormhole
 					random_pos = yes
 					orbit_angle = 360
@@ -3891,7 +3889,7 @@ country_event = {
 	trigger = {
 		has_origin = origin_ngm_galactic_empire_aquarium
 	}
-	immediate = {
+	immediate = {	
 		# Buildings
 		event_target:ngm_galactic_empire_aquarium = {
 			set_owner = root
@@ -3927,365 +3925,6 @@ country_event = {
 			add_district = ngm_district_arcology_marine_administrative_Organization
 			add_district = ngm_district_arcology_marine_health_care
 			add_district = ngm_district_arcology_marine_water_park
-		}
-	}
-}
-
-##################################
-######  anomalies用イベント #######
-##################################
-namespace = ngm_anomaly
-# 1.欠落した生態系 missing_ecosystem Ⅳ
-# ③効果・選択肢
-# なんということだ（社会学+1000、2年間社会学+5%）（追加で10年間帝国補正「環境主義の主張」を獲得）
-# ※環境主義の主張（環境主義魅力+10。+10%、テラフォーミングコスト+5%）
-ship_event = {
-	id = ngm_anomaly.1
-	title = "ngm_anomaly.1.name"
-	desc = "ngm_anomaly.1.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.1.a
-		owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = @tier3influencereward
-				min = @tier3influencemin
-				max = @tier3influencemax
-			}
-			add_modifier = {
-				modifier = ngm_missing_ecosystem
-				days = 720
-			}
-			add_modifier = {
-				modifier = ngm_environmentalism_claims
-				days = 3600
-			}
-		}
-	}
-}
-
-# 2.娯楽の影 shadow_of_entertainment	Ⅳ
-# ③効果・選択肢
-# ブラックホールに投棄すればよいのに。（工学+1000、出土品+30）
-ship_event = {
-	id = ngm_anomaly.2
-	title = "ngm_anomaly.2.name"
-	desc = "ngm_anomaly.2.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.2.a
-		owner = {
-			add_monthly_resource_mult = {
-				resource = engineering_research
-				value = @tier2influencereward
-				min = @tier2influencemin
-				max = @tier2influencemax
-			}
-			add_resource = {
-				minor_artifacts = 30
-			}
-		}
-	}
-}
-
-# 3.軍靴の音 resounding_of_military_boots	Ⅴ
-# ③効果・選択肢
-# ｼｮｷﾞｮ! ﾑｯｼﾞｮ!(社会学+1000。出土品+30)
-ship_event = {
-	id = ngm_anomaly.3
-	title = "ngm_anomaly.3.name"
-	desc = "ngm_anomaly.3.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.3.a
-		owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = @tier2influencereward
-				min = @tier2influencemin
-				max = @tier2influencemax
-			}
-			add_resource = {
-				minor_artifacts = 30
-			}
-		}
-	}
-}
-
-# 4.〇戦闘データの取得 obtaining_combat_data Ⅳ
-# ③効果・選択肢
-# 不自然だが、まあよいだろう（スペシャルプロジェクト「戦闘訓練の果てに」）
-ship_event = {
-	id = ngm_anomaly.4
-	title = "ngm_anomaly.4.name"
-	desc = "ngm_anomaly.4.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	# 「戦闘訓練の果てに」
-	option = {
-		name = ngm_anomaly.4.a
-		from = {
-			enable_special_project = {
-				name = "NGM_OBTAINING_COMBAT_DATA"
-				location = this
-				owner = root.owner
-			}
-		}
-	}
-	# 軍部に探りを入れる
-	option = {
-		name = ngm_anomaly.4.b
-		owner = {
-			enable_special_project = {
-				name = "NGM_PROBE_MILITARY"
-				location = capital_scope
-				owner = ROOT
-			}
-		}
-	}
-}
-
-# 5.〇開かずの部屋 uncovered_room Ⅱ
-# ③効果・選択肢
-# どのようなアプローチが最適なのか検討しよう。（スペシャルプロジェクト「北風と太陽」）
-ship_event = {
-	id = ngm_anomaly.5
-	title = "ngm_anomaly.5.name"
-	desc = "ngm_anomaly.5.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	# キーを解読する（物理学10000必要）
-	option = {
-		name = ngm_anomaly.5.a
-		from = {
-			enable_special_project = {
-				name = "NGM_UNCOVERED_ROOM1"
-				location = this
-				owner = root.owner
-			}
-		}
-	}
-	# 爆破を行う（工学。1000必要）
-	option = {
-		name = ngm_anomaly.5.b
-		from = {
-			enable_special_project = {
-				name = "NGM_UNCOVERED_ROOM2"
-				location = this
-				owner = root.owner
-			}
-		}
-	}
-}
-
-# 6.〇幸運を。過去の者より敬礼を Ⅴ
-# ③効果・選択肢
-# 嫌な予感もするが......（スペシャルプロジェクト「突入 結果」 調査船1隻。3か月）
-ship_event = {
-	id = ngm_anomaly.6
-	title = "ngm_anomaly.6.name"
-	desc = "ngm_anomaly.6.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.6.a
-		from = {
-			enable_special_project = {
-				name = "NGM_ENTRY_RESULT"
-				location = this
-				owner = root.owner
-			}
-		}
-	}
-}
-
-# 7.無料の昼飯などない Ⅲ
-# ③効果・選択肢
-# さあ、仕事の時間だ（2年間Pop生産力+5%）
-ship_event = {
-	id = ngm_anomaly.7
-	title = "ngm_anomaly.7.name"
-	desc = "ngm_anomaly.7.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.7.a
-		owner = {
-			add_modifier = {
-				modifier = ngm_no_free_foods
-				days = 720
-			}
-		}
-	}
-}
-
-# 8.たったひとつの冴えたやりかた Ⅳ
-# ③効果・選択肢
-# 冴えたやり方か......（2年間統合力+10%）
-ship_event = {
-	id = ngm_anomaly.1
-	title = "ngm_anomaly.8.name"
-	desc = "ngm_anomaly.8.desc"
-	picture = GFX_evt_city_ruins
-	show_sound = event_ship_bridge
-	location = FROM
-	is_triggered_only = yes
-	immediate = {
-	}
-	option = {
-		name = ngm_anomaly.8.a
-		owner = {
-			add_modifier = {
-				modifier = ngm_only_one_way
-				days = 720
-			}
-		}
-	}
-}
-
-# 不自然だが、まあよいだろう（スペシャルプロジェクト「戦闘訓練の果てに」）
-# ⑤プロジェクト結果
-# 「戦闘訓練の果てに」
-# この訓練場で行われた訓練は非人道的なものであり、多くの犠牲を出した。多くの兵士が戦死し、もう戻っては来ない。
-# この訓練は軍研究所と首脳部が仕組んだもので、無人戦闘機の開発の戦闘データを取得するものであった。最後まで生き残った兵士の戦闘データを参照し、そのデータを有した無人戦闘機と戦わせることで訓練は終了した。
-# 戦死した将兵は2階級特進の上、銀河勲章が授与されたが、無人戦闘機計画は予算の都合で破棄された。
-# ※当該地上軍は失われる
-# 選択肢
-# 何と非人道的な......(軍国以外:布告「軍事研究倫理規範の制定」)
-# 有用な結果であったな(軍国のみ:布告「無制限の軍事研究の実施」)
-# ※軍事研究倫理規範の制定（5年間幸福度+5%、外交関係+30）
-# ※無制限の軍事研究の実施（5年間研究速度+5%、外交関係-30）
-ship_event = {
-	id =  ngm_anomaly.100
-	title =  ngm_anomaly.100.name
-	desc =  ngm_anomaly.100.desc
-	picture = GFX_evt_satellite_in_orbit
-	show_sound = event_default
-	location = fromfrom
-
-	is_triggered_only = yes
-
-	immediate = {
-		fleet = {
-			delete_fleet = this
-		}
-	}
-
-	option = {
-		name =  ngm_anomaly.100.a
-		custom_tooltip =  ngm_anomaly.100.a.tooltip
-		trigger = {
-			owner = {
-				NOR = {
-					has_ethic = ethic_militarist
-					has_ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		hidden_effect = {
-			owner = {
-				set_country_flag = ngm_anomaly_1_country_flag
-			}
-		}
-	}
-
-	option = {
-		name =  ngm_anomaly.100.b 
-		custom_tooltip =  ngm_anomaly.100.b.tooltip
-		trigger = {
-			owner = {
-				OR = {
-					has_ethic = ethic_militarist
-					has_ethic = ethic_fanatic_militarist
-				}
-			}
-		}
-		hidden_effect = {
-			owner = {
-				set_country_flag = ngm_anomaly_2_country_flag
-			}
-		}
-	}
-}
-
-# 「軍部に探りを入れる」
-# 軍部に対して調査を行った結果、非人道的研究といくつもの不正が発覚した。軍首脳部の責任を追及し、多くの軍高官が失職し、より堅実で誠実な人物が要職に就くこととなった。しかし、軍内部には不満も大きく残ったようだ。）
-# よくやった（10年間外交発言力+10%、社会学研究+10%、安定度-15）
-ship_event = {
-	id =  ngm_anomaly.101
-	title =  ngm_anomaly.101.name
-	desc =  ngm_anomaly.101.desc
-	picture = GFX_evt_satellite_in_orbit
-	show_sound = event_default
-	location = fromfrom
-
-	is_triggered_only = yes
-
-	immediate = {
-		fleet = {
-			delete_fleet = this
-		}
-	}
-
-	option = {
-		name =  ngm_anomaly.101.a 
-		owner = {
-			add_modifier = {
-				modifier = ngm_probe_military
-				days = 3600
-			}
-		}
-	}
-}
-
-# 考古学地点
-fleet_event = {
-	id = ngm_anomaly.1001
-	title = "ngm_anomaly.1001.name"
-	desc = ngm_anomaly.1001.desc
-	picture = GFX_evt_relic_world_street
-	show_sound = event_wind_ruins
-	location = from
-
-	archaeology = yes
-
-	is_triggered_only = yes
-
-	option = {
-		name = OK
-		owner = {
 		}
 	}
 }
@@ -9345,6 +8984,7 @@ country_event = {
 #############################
 ######  オリンピックイベント #######
 #############################
+
 # オリンピック開催地抽選開始
 country_event = {
 	id = ngm_government.100
@@ -9362,7 +9002,7 @@ country_event = {
 		}
 	}
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	immediate = {
 		set_global_flag = ongoing_ngm_olympic_nomination
@@ -9449,7 +9089,7 @@ country_event = {
 		}
 	}
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	immediate = {
 		set_country_flag = ngm_olympic_nomination_eligible
@@ -9845,7 +9485,7 @@ country_event = {
 	title = ngm_government.107.name
 	desc = ngm_government.107.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -9917,7 +9557,7 @@ country_event = {
 	title = ngm_government.108.name
 	desc = ngm_government.108.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10358,7 +9998,7 @@ country_event = {
 	title = ngm_government.110.name
 	desc = ngm_government.110.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10400,7 +10040,7 @@ country_event = {
 	title = ngm_government.111.name
 	desc = ngm_government.111.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10442,7 +10082,7 @@ country_event = {
 	title = ngm_government.112.name
 	desc = ngm_government.112.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10481,7 +10121,7 @@ country_event = {
 	title = ngm_government.113.name
 	desc = ngm_government.113.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10520,7 +10160,7 @@ country_event = {
 	title = ngm_government.114.name
 	desc = ngm_government.114.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10560,7 +10200,7 @@ country_event = {
 	title = ngm_government.115.name
 	desc = ngm_government.115.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10599,7 +10239,7 @@ country_event = {
 	title = ngm_government.116.name
 	desc = ngm_government.116.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10638,7 +10278,7 @@ country_event = {
 	title = ngm_government.117.name
 	desc = ngm_government.117.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10683,7 +10323,7 @@ country_event = {
 	title = ngm_government.118.name
 	desc = ngm_government.118.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10722,7 +10362,7 @@ country_event = {
 	title = ngm_government.119.name
 	desc = ngm_government.119.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10760,7 +10400,7 @@ country_event = {
 	title = ngm_government.120.name
 	desc = ngm_government.120.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10802,7 +10442,7 @@ country_event = {
 	title = ngm_government.121.name
 	desc = ngm_government.121.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10841,7 +10481,7 @@ country_event = {
 	title = ngm_government.122.name
 	desc = ngm_government.122.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10880,7 +10520,7 @@ country_event = {
 	title = ngm_government.123.name
 	desc = ngm_government.123.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10918,7 +10558,7 @@ country_event = {
 	title = ngm_government.124.name
 	desc = ngm_government.124.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10957,7 +10597,7 @@ country_event = {
 	title = ngm_government.125.name
 	desc = ngm_government.125.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -10995,7 +10635,7 @@ country_event = {
 	title = ngm_government.126.name
 	desc = ngm_government.126.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11041,7 +10681,7 @@ country_event = {
 	title = ngm_government.127.name
 	desc = ngm_government.127.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11079,7 +10719,7 @@ country_event = {
 	title = ngm_government.110.name
 	desc = ngm_government.110.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11096,7 +10736,7 @@ country_event = {
 	title = ngm_government.111.name
 	desc = ngm_government.111.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11113,7 +10753,7 @@ country_event = {
 	title = ngm_government.112.name
 	desc = ngm_government.112.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11130,7 +10770,7 @@ country_event = {
 	title = ngm_government.113.name
 	desc = ngm_government.113.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11147,7 +10787,7 @@ country_event = {
 	title = ngm_government.114.name
 	desc = ngm_government.114.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11164,7 +10804,7 @@ country_event = {
 	title = ngm_government.115.name
 	desc = ngm_government.115.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11181,7 +10821,7 @@ country_event = {
 	title = ngm_government.116.name
 	desc = ngm_government.116.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11198,7 +10838,7 @@ country_event = {
 	title = ngm_government.117.name
 	desc = ngm_government.117.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11215,7 +10855,7 @@ country_event = {
 	title = ngm_government.118.name
 	desc = ngm_government.118.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11232,7 +10872,7 @@ country_event = {
 	title = ngm_government.119.name
 	desc = ngm_government.119.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11249,7 +10889,7 @@ country_event = {
 	title = ngm_government.120.name
 	desc = ngm_government.120.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11266,7 +10906,7 @@ country_event = {
 	title = ngm_government.121.name
 	desc = ngm_government.121.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11283,7 +10923,7 @@ country_event = {
 	title = ngm_government.122.name
 	desc = ngm_government.122.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11300,7 +10940,7 @@ country_event = {
 	title = ngm_government.123.name
 	desc = ngm_government.123.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11317,7 +10957,7 @@ country_event = {
 	title = ngm_government.124.name
 	desc = ngm_government.124.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11334,7 +10974,7 @@ country_event = {
 	title = ngm_government.125.name
 	desc = ngm_government.125.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11351,7 +10991,7 @@ country_event = {
 	title = ngm_government.126.name
 	desc = ngm_government.126.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11368,7 +11008,7 @@ country_event = {
 	title = ngm_government.127.name
 	desc = ngm_government.127.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11387,7 +11027,7 @@ country_event = {
 	title = ngm_government.200.name
 	desc = ngm_government.200.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11428,7 +11068,7 @@ country_event = {
 	title = ngm_government.201.name
 	desc = ngm_government.201.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11470,7 +11110,7 @@ country_event = {
 	title = ngm_government.202.name
 	desc = ngm_government.202.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11523,7 +11163,7 @@ country_event = {
 	title = ngm_government.203.name
 	desc = ngm_government.203.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11586,7 +11226,7 @@ country_event = {
 	title = ngm_government.204.name
 	desc = ngm_government.204.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11635,7 +11275,7 @@ country_event = {
 	title = ngm_government.205.name
 	desc = ngm_government.205.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11673,7 +11313,7 @@ country_event = {
 	title = ngm_government.206.name
 	desc = ngm_government.206.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11715,7 +11355,7 @@ country_event = {
 	title = ngm_government.207.name
 	desc = ngm_government.207.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11757,7 +11397,7 @@ country_event = {
 	title = ngm_government.208.name
 	desc = ngm_government.208.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11798,7 +11438,7 @@ country_event = {
 	title = ngm_government.209.name
 	desc = ngm_government.209.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11841,7 +11481,7 @@ country_event = {
 	title = ngm_government.210.name
 	desc = ngm_government.210.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11890,7 +11530,7 @@ country_event = {
 	title = ngm_government.211.name
 	desc = ngm_government.211.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11937,7 +11577,7 @@ country_event = {
 	title = ngm_government.212.name
 	desc = ngm_government.212.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -11979,7 +11619,7 @@ country_event = {
 	title = ngm_government.213.name
 	desc = ngm_government.213.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12025,7 +11665,7 @@ country_event = {
 	title = ngm_government.200.name
 	desc = ngm_government.200.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12043,7 +11683,7 @@ country_event = {
 	title = ngm_government.201.name
 	desc = ngm_government.201.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12061,7 +11701,7 @@ country_event = {
 	title = ngm_government.202.name
 	desc = ngm_government.202.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12080,7 +11720,7 @@ country_event = {
 	title = ngm_government.203.name
 	desc = ngm_government.203.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12098,7 +11738,7 @@ country_event = {
 	title = ngm_government.204.name
 	desc = ngm_government.204.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12116,7 +11756,7 @@ country_event = {
 	title = ngm_government.205.name
 	desc = ngm_government.205.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12134,7 +11774,7 @@ country_event = {
 	title = ngm_government.206.name
 	desc = ngm_government.206.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12152,7 +11792,7 @@ country_event = {
 	title = ngm_government.207.name
 	desc = ngm_government.207.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12170,7 +11810,7 @@ country_event = {
 	title = ngm_government.208.name
 	desc = ngm_government.208.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12188,7 +11828,7 @@ country_event = {
 	title = ngm_government.209.name
 	desc = ngm_government.209.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12207,7 +11847,7 @@ country_event = {
 	title = ngm_government.210.name
 	desc = ngm_government.210.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12226,7 +11866,7 @@ country_event = {
 	title = ngm_government.211.name
 	desc = ngm_government.211.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12244,7 +11884,7 @@ country_event = {
 	title = ngm_government.212.name
 	desc = ngm_government.212.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12262,7 +11902,7 @@ country_event = {
 	title = ngm_government.213.name
 	desc = ngm_government.213.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
@@ -12549,7 +12189,7 @@ country_event = {
 	title = ngm_government.300.name
 	desc = ngm_government.300.desc
 	picture = GFX_evt_financial_instruments
-	show_sound = event_default
+	show_sound = event_galactic_market
 	is_triggered_only = yes
 	location = event_target:ngm_olympic_founder_planet
 	trigger = {
